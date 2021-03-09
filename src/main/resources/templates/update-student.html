@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+          integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css"
+          integrity="sha512-8Tb+T7SKUFQWOPIQCaLDWWe1K/SY8hvHl7brOH8Nz5z1VT8fnf8B+9neoUzmFY3OzkWMMs3OjrwZALgB1oXFBg=="
+          crossorigin="anonymous"/>
+    <title>Spring Boot Data JPA CRUD SQL</title>
+</head>
+<body class="ui segment">
+<form class="ui form" th:object="${student}" method="post" th:action="@{/students/save-changes}">
+    <input type="hidden" th:field="*{id}">
+    <div class="fields">
+        <div class="four wide field">
+            <label for="id">ID</label>
+            <input id="id" type="number" th:value="*{id}" name="id" placeholder="ID" readonly>
+        </div>
+        <div class="four wide field">
+            <label for="fullName">Full Name</label>
+            <input id="fullName" type="text" th:value="*{fullName}" name="fullName" placeholder="Full Name" readonly>
+        </div>
+    </div>
+    <div class="fields">
+        <div class="three wide field" id="phone_div">
+            <label for="phone">Phone</label>
+            <input id="phone" type="text" th:field="*{profile.phone}" onkeyup="validatePhone();" pattern="^[0-9+]+$"
+                   min="11" max="18" name="phone" placeholder="Phone">
+            <div id="phone_error1" class="ui pointing red basic label" style="display: none;">
+                Only numbers and plus (+) allowed
+            </div>
+            <div id="phone_error2" class="ui pointing red basic label" style="display: none;">
+                Length must be within 11-20 characters
+            </div>
+        </div>
+        <div class="five wide field" id="email_div">
+            <label for="email">Email</label>
+            <input id="email" type="email" th:field="*{profile.email}" onkeyup="validateEmail();" name="email"
+                   placeholder="Email">
+            <div id="email_error" class="ui pointing red basic label" style="display: none;">
+                Invalid email
+            </div>
+        </div>
+    </div>
+    <div class="fields">
+        <div class="six wide field" id="address_div">
+            <label for="address">Address</label>
+            <textarea id="address" th:field="*{profile.address}" minlength="5" onkeyup="validateAddress();" cols="6"
+                      name="address"
+                      placeholder="Address"></textarea>
+            <div id="address_error" class="ui pointing red basic label" style="display: none;">
+                Minimum length is 5 characters
+            </div>
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <button type="submit" class="ui green button">
+                <i class="save icon"></i>
+                Save
+            </button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" th:src="@{/scripts/validation_script.js}"></script>
+</body>
+</html>

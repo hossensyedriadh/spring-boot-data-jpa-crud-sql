@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+          integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css"
+          integrity="sha512-8Tb+T7SKUFQWOPIQCaLDWWe1K/SY8hvHl7brOH8Nz5z1VT8fnf8B+9neoUzmFY3OzkWMMs3OjrwZALgB1oXFBg=="
+          crossorigin="anonymous"/>
+    <title>Spring Boot Data JPA CRUD SQL</title>
+</head>
+<body class="ui segment">
+<div class="ui form">
+    <div class="field">
+        <input type="search" id="search" onkeyup="search();" title="Type an ID" placeholder="Search by ID">
+    </div>
+</div>
+<table class="ui compact celled definition table" id="students_table">
+    <caption>Students List</caption>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student: ${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.fullName}"></td>
+        <td th:text="${student.profile.phone}"></td>
+        <td th:text="${student.profile.email}"></td>
+        <td th:text="${student.profile.address}"></td>
+        <td style="display: flex; justify-content: space-around;">
+            <a th:href="@{/students/view(id=${student.id})}" class="ui green button">
+                <i class="id card outline icon"></i>
+                View
+            </a>
+            <form method="post" th:action="@{/students/delete(id=${student.id})}">
+                <button type="submit" class="ui red button" onclick="if (!confirm('Delete student?')) return false">
+                    <i class="trash icon"></i>
+                    Delete
+                </button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+    <tfoot class="full-width">
+    <tr>
+        <th></th>
+        <th colspan="5">
+            <a class="ui right floated small primary labeled icon button" th:href="@{/students/new}" target="_self">
+                <i class="user icon"></i>
+                Add Student
+            </a>
+        </th>
+    </tr>
+    </tfoot>
+</table>
+<script type="text/javascript" th:src="@{/scripts/index_script.js}"></script>
+</body>
+</html>

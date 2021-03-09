@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+          integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css"
+          integrity="sha512-8Tb+T7SKUFQWOPIQCaLDWWe1K/SY8hvHl7brOH8Nz5z1VT8fnf8B+9neoUzmFY3OzkWMMs3OjrwZALgB1oXFBg=="
+          crossorigin="anonymous"/>
+    <title>Spring Boot Data JPA CRUD SQL</title>
+</head>
+<body class="ui segment">
+<div class="ui form" th:object="${student}">
+    <div class="fields">
+        <div class="four wide field">
+            <label for="id">ID</label>
+            <input id="id" type="number" th:value="*{id}" placeholder="ID" readonly>
+        </div>
+        <div class="four wide field">
+            <label for="fullName">Full Name</label>
+            <input id="fullName" type="text" th:value="*{fullName}" placeholder="Full Name" readonly>
+        </div>
+    </div>
+    <div class="fields">
+        <div class="three wide field">
+            <label for="phone">Phone</label>
+            <input id="phone" type="text" th:value="*{profile.phone}" placeholder="Phone" readonly>
+        </div>
+        <div class="five wide field">
+            <label for="email">Email</label>
+            <input id="email" type="email" th:value="*{profile.email}" placeholder="Email" readonly>
+        </div>
+    </div>
+    <div class="fields">
+        <div class="six wide field">
+            <label for="address">Address</label>
+            <textarea id="address" th:text="*{profile.address}" cols="6" placeholder="Address" readonly></textarea>
+        </div>
+    </div>
+    <div class="fields">
+        <div class="field">
+            <a class="ui blue button" th:href="@{/students/update(id=${student.id})}">
+                <i class="edit outline icon"></i>
+                Update
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
