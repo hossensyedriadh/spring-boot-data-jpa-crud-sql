@@ -34,17 +34,17 @@ public class CrudServiceImpl implements CrudService {
     }
 
     @Override
-    public Student addStudent(Student student) {
-        return studentRepositoryObjectFactory.getObject().saveAndFlush(student);
+    public void addStudent(Student student) {
+        studentRepositoryObjectFactory.getObject().saveAndFlush(student);
     }
 
     @Override
-    public Student updateStudent(Student updatedStudent) {
+    public void updateStudent(Student updatedStudent) {
         if (studentRepositoryObjectFactory.getObject().findById(updatedStudent.getId()).isPresent()) {
-            return studentRepositoryObjectFactory.getObject().saveAndFlush(updatedStudent);
+            studentRepositoryObjectFactory.getObject().saveAndFlush(updatedStudent);
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
     @Override

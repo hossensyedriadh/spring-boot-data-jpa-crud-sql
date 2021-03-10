@@ -9,9 +9,9 @@ public interface CrudService {
 
     Student getStudent(Integer id);
 
-    Student addStudent(Student student);
+    void addStudent(Student student);
 
-    Student updateStudent(Student updatedStudent);
+    void updateStudent(Student updatedStudent);
 
     void deleteStudent(Integer id);
 }
