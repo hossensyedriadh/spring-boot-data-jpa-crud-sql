@@ -11,11 +11,13 @@ let validateName = () => {
             name_error2.style.display = 'none';
             name_div.className = 'five wide field';
         } else {
+            name_error1.style.display = 'none';
             name_error2.style.display = 'block';
             name_div.className = 'five wide field error';
         }
     } else {
         name_error1.style.display = 'block';
+        name_error2.style.display = 'none';
         name_div.className = 'five wide field error';
     }
 }
@@ -34,11 +36,13 @@ let validatePhone = () => {
             phone_error2.style.display = 'none';
             phone_div.className = 'three wide field';
         } else {
+            phone_error1.style.display = 'none';
             phone_error2.style.display = 'block';
             phone_div.className = 'three wide field error';
         }
     } else {
         phone_error1.style.display = 'block';
+        phone_error2.style.display = 'none';
         phone_div.className = 'three wide field error';
     }
 }

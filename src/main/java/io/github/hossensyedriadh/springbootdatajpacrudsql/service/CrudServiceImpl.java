@@ -28,7 +28,7 @@ public class CrudServiceImpl implements CrudService {
     @Override
     public Student getStudent(Integer id) {
         if (studentRepositoryObjectFactory.getObject().findById(id).isPresent()) {
-            return studentRepositoryObjectFactory.getObject().getOne(id);
+            return studentRepositoryObjectFactory.getObject().findById(id).get();
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
